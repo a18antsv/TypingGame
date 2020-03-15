@@ -1,22 +1,15 @@
 package menu;
 
-import game.Paintable;
-
 import java.awt.*;
 
-public class MenuButton implements Paintable, Clickable {
-	
-	private String text;
-	private int x;
-	private int y;
+public class MenuButton extends MenuItem implements Clickable {
+
 	private int width;
 	private int height;
 	private Runnable action;
 	
-	public MenuButton(String text, int x, int y, int width, int height, Runnable action) {
-		this.text = text;
-		this.x = x;
-		this.y = y;
+	public MenuButton(String text, int x, int y, int width, int height, int fontSize, Runnable action) {
+		super(text, x, y, fontSize);
 		this.width = width;
 		this.height = height;
 		this.action = action;
@@ -25,9 +18,9 @@ public class MenuButton implements Paintable, Clickable {
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		Font font = new Font("Monospaced", Font.BOLD, 42);
+		Font font = new Font("Monospaced", Font.BOLD, this.fontSize);
 		FontMetrics metrics = g.getFontMetrics(font);
-		
+
 		int x = this.x + (this.width - metrics.stringWidth(this.text)) / 2;
 		int y = this.y + ((this.height - metrics.getHeight()) / 2) + metrics.getAscent();
 

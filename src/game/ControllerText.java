@@ -6,7 +6,7 @@ public class ControllerText extends Text {
 
 	public ControllerText(float x, float y, Orientation orientation, Size size, Runnable onCompletion) {
 		super(WordSelector.getInstance().getWord(), x, y, orientation, size, onCompletion);
-		this.health = 5;
+		this.health = 2;
 	}
 
 	@Override
@@ -16,7 +16,7 @@ public class ControllerText extends Text {
 			this.health--;
 		} else {
 			this.setWord(WordSelector.getInstance().getWord());
-			this.health = 5;
+			this.health = 2;
 		}
 	}
 }

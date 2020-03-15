@@ -2,18 +2,23 @@ package game.entity;
 
 import game.Paintable;
 import game.Updateable;
+import game.WorldContext;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-public abstract class Unit implements Paintable, Updateable {
+public abstract class Entity implements Paintable, Updateable {
 	
 	private AffineTransform transform;
+	private WorldContext worldContext;
+	protected int thickness;
 	
-	public Unit(AffineTransform transform) {
+	public Entity(AffineTransform transform, int thickness, WorldContext worldContext) {
 		this.transform = transform;
+		this.thickness = thickness;
+		this.worldContext = worldContext;
 	}
-	
+
 	public void rotate(double radians) {
 		this.transform.rotate(radians);
 	}

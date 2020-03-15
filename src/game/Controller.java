@@ -1,18 +1,18 @@
 package game;
 
-import game.entity.Snake;
+import game.entity.Player;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Controller implements KeyListener {
 
-	private final Snake snake;
+	private final Player player;
 	private float velocity;
 	private final ControllerText[] wordControllers;
 	
-	public Controller(Snake snake, Activity activity) {
-		this.snake = snake;
+	public Controller(Player player, Activity activity) {
+		this.player = player;
 		this.velocity = 2;
 		this.wordControllers = new ControllerText[] {
 			new ControllerText(Game.WIDTH / 2f, Text.Size.LARGE.getFontHeight(), Text.Orientation.DEFAULT, Text.Size.LARGE, this::completeUp),
@@ -26,19 +26,19 @@ public class Controller implements KeyListener {
 	}
 
 	private void completeUp() {
-		this.snake.setVelocity(0, -this.velocity);
+		this.player.setVelocity(0, -this.velocity);
 		this.resetControllers();
 	}
 	private void completeRight() {
-		this.snake.setVelocity(this.velocity, 0);
+		this.player.setVelocity(this.velocity, 0);
 		this.resetControllers();
 	}
 	private void completeDown() {
-		this.snake.setVelocity(0, this.velocity);
+		this.player.setVelocity(0, this.velocity);
 		this.resetControllers();
 	}
 	private void completeLeft() {
-		this.snake.setVelocity(-this.velocity, 0);
+		this.player.setVelocity(-this.velocity, 0);
 		this.resetControllers();
 	}
 
@@ -54,7 +54,6 @@ public class Controller implements KeyListener {
 		for (ControllerText wordController : this.wordControllers) {
 			wordController.pressed(c);
 		}
-
 	}
 
 	@Override

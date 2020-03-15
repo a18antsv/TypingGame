@@ -44,7 +44,6 @@ public class Game extends JPanel {
      * while(stepsThisCykle >=1)
      */
     public void run() {
-
         long lastTime = System.nanoTime();
         final double nsPerStep = 1_000_000_000.0 / 60.0;
         double stepsThisCycle = 0;
@@ -85,7 +84,7 @@ public class Game extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		g.setColor(Color.BLACK);
+		g.setColor(Color.DARK_GRAY);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		this.activity.paint(g);
