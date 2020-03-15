@@ -1,11 +1,10 @@
 package game;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.event.MouseListener;
-
-import javax.swing.JPanel;
 
 import menu.MainMenu;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseListener;
 
 public class Game extends JPanel {
 	
@@ -35,13 +34,13 @@ public class Game extends JPanel {
 	
 	/*
      * Spelets gameloop:
-     * Varje cycel består av ett anrop på render() och sker i princip while(true) - så ofta som
-     * möjligt, men tar hänsyn till att den även behöver anropa step() 60 per sekund.
+     * Varje cycel bestï¿½r av ett anrop pï¿½ render() och sker i princip while(true) - sï¿½ ofta som
+     * mï¿½jligt, men tar hï¿½nsyn till att den ï¿½ven behï¿½ver anropa step() 60 per sekund.
      *
-     * Genom att varje cykel räkna ut hur mycket tid som passerat sedan förra cykeln avgörs om
-     * step() bör anropas eller kan skippas. När variablen stepsThisCykel är >= 1 "tar spelet ett
-     * steg". Om spelet körs på en långsammare enhet kan det behövas ta två eller flera steg denna
-     * cykel (mellan varje rendering) för att uppfylla 60 steg per sekund och därmed används
+     * Genom att varje cykel rï¿½kna ut hur mycket tid som passerat sedan fï¿½rra cykeln avgï¿½rs om
+     * step() bï¿½r anropas eller kan skippas. Nï¿½r variablen stepsThisCykel ï¿½r >= 1 "tar spelet ett
+     * steg". Om spelet kï¿½rs pï¿½ en lï¿½ngsammare enhet kan det behï¿½vas ta tvï¿½ eller flera steg denna
+     * cykel (mellan varje rendering) fï¿½r att uppfylla 60 steg per sekund och dï¿½rmed anvï¿½nds
      * while(stepsThisCykle >=1)
      */
     public void run() {

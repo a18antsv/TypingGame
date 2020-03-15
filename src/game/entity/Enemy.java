@@ -1,21 +1,20 @@
 package game.entity;
-import java.awt.Graphics;
 
 import game.Text;
+
+import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 public abstract class Enemy extends Unit {
 	
 	private Text text;
 	
-	public Enemy(Text text, float x, float y, int width, int height, float velocityX, float velocityY) {
-		super(x, y, width, height, velocityX, velocityY);
-		this.text = text;
+	public Enemy(AffineTransform transform) {
+		super(transform);
 	}
 
-	public Enemy(Text text, float x, float y, int width, int height) {
-		super(x, y, width, height);
-		this.text = text;
-	}
+
+
 
 	@Override
 	public void step() {

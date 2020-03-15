@@ -1,5 +1,6 @@
 package game;
-import java.awt.EventQueue;
+
+import java.awt.*;
 
 /**
  * Normal enemy following player

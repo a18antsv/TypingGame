@@ -1,12 +1,13 @@
 package menu;
-import java.awt.Rectangle;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.LinkedList;
 
 import game.Activity;
 import game.Game;
 import game.GameComponent;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.LinkedList;
 
 public abstract class Menu extends Activity implements MouseListener {
 	

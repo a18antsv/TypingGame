@@ -1,6 +1,7 @@
 package game;
 
 import java.io.DataInputStream;
+import java.lang.Character;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -29,7 +30,7 @@ public class WordSelector {
 	
 	public static WordSelector fromFile(URL url) {
 		String fileContent = "";
-		ArrayList<String> retval = new ArrayList<String>();
+		ArrayList<String> retval = new ArrayList<>();
 		try {
 			DataInputStream dis = new DataInputStream(url.openStream());
 			byte[] buffer = new byte[dis.available()];
@@ -40,15 +41,15 @@ public class WordSelector {
 			System.out.println(e.getMessage());
 		}
 		
-		String word = "";
+		StringBuilder word = new StringBuilder();
 		for(int i = 0; i < fileContent.length(); i++) {
 			if(Character.isAlphabetic(fileContent.charAt(i))) {
-				word += fileContent.charAt(i);
+				word.append(fileContent.charAt(i));
 			} else {
 				if(word.length() > 1) {
-					retval.add(new String(word.toLowerCase()));
+					retval.add(word.toString().toLowerCase());
 				}
-				word = "";
+				word = new StringBuilder();
 			}
 		}
 		if(retval.size() == 0) {

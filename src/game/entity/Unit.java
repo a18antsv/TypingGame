@@ -3,84 +3,39 @@ package game.entity;
 import game.Paintable;
 import game.Updateable;
 
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+
 public abstract class Unit implements Paintable, Updateable {
 	
-	private float x;
-	private float y;
-	private int width;
-	private int height;
-	private float velocityX;
-	private float velocityY;
+	private AffineTransform transform;
 	
-	public Unit(float x, float y, int width, int height) {
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
-		this.velocityX = 0;
-		this.velocityY = 0;
+	public Unit(AffineTransform transform) {
+		this.transform = transform;
 	}
 	
-	public Unit(float x, float y, int width, int height, float velocityX, float velocityY) {
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
-		this.velocityX = velocityX;
-		this.velocityY = velocityY;
+	public void rotate(double radians) {
+		this.transform.rotate(radians);
+	}
+	
+	public void translate(float x, float y) {
+		this.transform.translate(x, y);
+	}
+	
+	public AffineTransform getTransform() {
+		return this.transform;
 	}
 	
 	@Override
-	public void step() {
-		this.x += this.velocityX;
-		this.y += this.velocityY;
+	public void paint(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		AffineTransform transform = g2d.getTransform();
+		g2d.transform(this.transform);
+		this.paintTransformed(g2d);
+		g2d.setTransform(transform);
 	}
-
-	public float getX() {
-		return x;
-	}
-
-	public void setX(float x) {
-		this.x = x;
-	}
-
-	public float getY() {
-		return y;
-	}
-
-	public void setY(float y) {
-		this.y = y;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
-	public float getVelocityX() {
-		return velocityX;
-	}
-
-	public void setVelocityX(float velocityX) {
-		this.velocityX = velocityX;
-	}
-
-	public float getVelocityY() {
-		return velocityY;
-	}
-
-	public void setVelocityY(float velocityY) {
-		this.velocityY = velocityY;
+	
+	protected void paintTransformed(Graphics2D g2d) {
+		
 	}
 }

@@ -1,7 +1,7 @@
 package game;
-import java.awt.Dimension;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 public class Window extends JFrame {
 		

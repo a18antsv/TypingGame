@@ -1,8 +1,8 @@
 package game;
-import java.awt.Color;
-import java.awt.Graphics;
 
 import game.entity.Snake;
+
+import java.awt.*;
 
 public class GameActivity extends Activity {
 	
@@ -17,7 +17,7 @@ public class GameActivity extends Activity {
 		super(game);
 		this.snake = new Snake(2, 2, GRID_SIZE);
 		this.addComponent(this.snake);
-		this.controller = new Controller(this.snake);
+		this.controller = new Controller(this.snake, this);
 		game.addKeyListener(this.controller);
 	}
 

@@ -1,9 +1,9 @@
 package game.entity;
 
-import java.awt.Graphics;
-
 import game.Paintable;
 import game.Updateable;
+
+import java.awt.*;
 
 public class TailPart implements Paintable, Updateable {
 	

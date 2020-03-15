@@ -1,5 +1,6 @@
 package game;
-import java.awt.Graphics;
+
+import java.awt.*;
 import java.util.LinkedList;
 
 public abstract class Activity implements Paintable, Updateable {

@@ -1,73 +1,65 @@
 package game;
 
-import java.awt.Graphics;
+import game.entity.Snake;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import game.entity.Snake;
+public class Controller implements KeyListener {
 
-public class Controller implements KeyListener, Paintable {
-	
 	private final Snake snake;
-	private boolean isUpPressed = false;
-	private boolean isDownPressed = false;
-	private boolean isLeftPressed = false;
-	private boolean isRightPressed = false;
+	private float velocity;
+	private final ControllerText[] wordControllers;
 	
-	public Controller(Snake snake) {
+	public Controller(Snake snake, Activity activity) {
 		this.snake = snake;
-	}
-	
-	@Override
-	public void paint(Graphics g) {
-		
+		this.velocity = 2;
+		this.wordControllers = new ControllerText[] {
+			new ControllerText(Game.WIDTH / 2f, Text.Size.LARGE.getFontHeight(), Text.Orientation.DEFAULT, Text.Size.LARGE, this::completeUp),
+			new ControllerText(Game.WIDTH - Text.Size.LARGE.getFontHeight(), Game.HEIGHT / 2f, Text.Orientation.CLOCKWISE, Text.Size.LARGE, this::completeRight),
+			new ControllerText(Game.WIDTH / 2f, Game.HEIGHT - Text.Size.LARGE.getFontHeight() * 0.6f, Text.Orientation.DEFAULT, Text.Size.LARGE, this::completeDown),
+			new ControllerText(Text.Size.LARGE.getFontHeight(), Game.HEIGHT / 2f, Text.Orientation.COUNTER_CLOCKWISE, Text.Size.LARGE, this::completeLeft)
+		};
+		for (ControllerText wordController : wordControllers) {
+			activity.addComponent(wordController);
+		}
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-		if(key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
-			isUpPressed = true;
-			snake.setVelocityY(-5);
-		}
-		if(key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
-			isDownPressed = true;
-			snake.setVelocityY(5);
-		}
-		if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
-			isLeftPressed = true;
-			snake.setVelocityX(-5);
-		}
-		if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
-			isRightPressed = true;
-			snake.setVelocityX(5);
-		}
+	private void completeUp() {
+		this.snake.setVelocity(0, -this.velocity);
+		this.resetControllers();
 	}
-	
-	@Override
-	public void keyReleased(KeyEvent e) {
-		int key = e.getKeyCode();
-		if(key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
-			isUpPressed = false;
-		}
-		if(key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
-			isDownPressed = false;
-		}
-		if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
-			isLeftPressed = false;
-		}
-		if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
-			isRightPressed = false;
-		}
-		
-		if(!isUpPressed && !isDownPressed) {
-			snake.setVelocityY(0);
-		}
-		if(!isLeftPressed && !isRightPressed) {
-			snake.setVelocityX(0);					
+	private void completeRight() {
+		this.snake.setVelocity(this.velocity, 0);
+		this.resetControllers();
+	}
+	private void completeDown() {
+		this.snake.setVelocity(0, this.velocity);
+		this.resetControllers();
+	}
+	private void completeLeft() {
+		this.snake.setVelocity(-this.velocity, 0);
+		this.resetControllers();
+	}
+
+	private void resetControllers() {
+		for (ControllerText wordController : wordControllers) {
+			wordController.reset();
 		}
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {}
+	public void keyTyped(KeyEvent e) {
+		char c = e.getKeyChar();
+		for (ControllerText wordController : this.wordControllers) {
+			wordController.pressed(c);
+		}
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {}
+	
+	@Override
+	public void keyReleased(KeyEvent e) {}
 }

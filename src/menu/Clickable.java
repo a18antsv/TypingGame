@@ -1,8 +1,8 @@
 package menu;
 
-import java.awt.Rectangle;
-
 import game.GameComponent;
+
+import java.awt.*;
 
 public interface Clickable extends GameComponent {
 	Rectangle getHitbox();
