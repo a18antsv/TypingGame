@@ -2,19 +2,29 @@ package menu;
 
 import java.awt.*;
 
+/**
+ * Class representing a button in the menu.
+ * A button is Clickable, hence the Clickable interface is implemented.
+ * Each button has a Runnable function so when creating a new button a reference to a method to execute when the button
+ * is clicked can be provided.
+ */
 public class MenuButton extends MenuItem implements Clickable {
 
 	private int width;
 	private int height;
 	private Runnable action;
-	
+
 	public MenuButton(String text, int x, int y, int width, int height, int fontSize, Runnable action) {
 		super(text, x, y, fontSize);
 		this.width = width;
 		this.height = height;
 		this.action = action;
 	}
-	
+
+	/**
+	 * Draws a rectangle at the x and y coordinates with the text centered in the middle of the rectangle.
+	 * @param g The Graphics context
+	 */
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;

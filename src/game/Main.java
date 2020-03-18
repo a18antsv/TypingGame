@@ -3,15 +3,10 @@ package game;
 import java.awt.*;
 
 /**
- * Normal enemy following player
- * Shield around enemy like a circle and you have to shoot to break it before shooting the enemy
- * Nest spawning enemies
- * 
- * 
- * @author Anton Svensson - a18antsv
- *
+ * Root class containing the main method which launches the application
+ * The singleton instance of Game is added to the JFrame as Game extends JPanel and is a component.
+ * Game thread is started.
  */
-
 public class Main {
 
 	public static final int WIDTH = 1280;

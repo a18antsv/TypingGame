@@ -3,10 +3,13 @@ package game;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
+/**
+ * A class representing a single character in a Text
+ */
 public class Character implements Paintable {
 	
 	private Font font;
-	private AffineTransform transform;
+	private AffineTransform transform; // 3x3 matrix of transforms made to the text
 	private char character;
 	private Color color;
 	private Color colorCorrect;
@@ -22,6 +25,11 @@ public class Character implements Paintable {
 		this.reset();
 	}
 
+	/**
+	 * Paints the char to the graphics context. Gets the transform of the graphics context,
+	 * transforms the graphics context with the transform matrix and resets the graphics context transform again.
+	 * @param g Graphics context
+	 */
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -33,10 +41,16 @@ public class Character implements Paintable {
 		g2d.setTransform(transform);
 	}
 
+	/**
+	 * Sets to color representing a correctly typed char
+	 */
 	public void setCorrect() {
 		this.color = this.colorCorrect;
 	}
 
+	/**
+	 * Resets to initial color
+	 */
 	public void reset() {
 		this.color = this.colorInitial;
 	}
