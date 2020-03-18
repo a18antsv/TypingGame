@@ -8,7 +8,9 @@ import java.io.*;
  */
 public class HighScore implements Serializable {
 
-    private int maxEatenFood;
+	private static final long serialVersionUID = -4466221588487588137L;
+
+	private int maxEatenFood;
     private int maxKilledEnemies;
 
     public HighScore(int maxEatenFood, int maxKilledEnemies) {
@@ -48,14 +50,15 @@ public class HighScore implements Serializable {
      * @param highScore the high score object to save on file
      */
     public static void serialize(HighScore highScore) {
-        try (
-                FileOutputStream fos = new FileOutputStream("highscore.ser");
-                ObjectOutputStream oos = new ObjectOutputStream(fos)
-        ) {
-            oos.writeObject(highScore);
-        } catch(Exception e) {
-            throw new RuntimeException(e);
-        }
+    	String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "highscore.ser";
+    	try (			
+			FileOutputStream fos = new FileOutputStream(path);
+			ObjectOutputStream oos = new ObjectOutputStream(fos)
+		) {
+			oos.writeObject(highScore);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     /**
@@ -63,13 +66,14 @@ public class HighScore implements Serializable {
      * @return HighScore object from file
      */
     public static HighScore deserialize() {
-        try(
-                FileInputStream fis = new FileInputStream("highscore.ser");
-                ObjectInputStream ois = new ObjectInputStream(fis)
+		String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "highscore.ser";		
+        try (
+			FileInputStream fis = new FileInputStream(path);
+			ObjectInputStream ois = new ObjectInputStream(fis)
         ) {
             return (HighScore) ois.readObject();
-        } catch(Exception e) {
-            throw new RuntimeException(e);
+        } catch(IOException | ClassNotFoundException e) {
+            return new HighScore(0, 0);
         }
     }
 }

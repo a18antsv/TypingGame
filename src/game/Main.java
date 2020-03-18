@@ -14,6 +14,7 @@ public class Main {
 	
 	public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
+
         	Window window = new Window("TypoShooter", WIDTH, HEIGHT);
         	Game game = new Game();
         

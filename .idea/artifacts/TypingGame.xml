@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TypingGame">
+    <output-path>$PROJECT_DIR$/../../assignment_04</output-path>
+    <root id="archive" name="TypingGame.jar">
+      <element id="module-output" name="TypingGame" />
+    </root>
+  </artifact>
+</component>
