@@ -10,13 +10,11 @@ import java.awt.event.KeyListener;
  */
 public class Controller implements KeyListener {
 
-	private final Player player;
 	private float velocity; //The standard velocity the player will move at
 	private final ControllerText[] wordControllers;
 	private WorldContext worldContext;
 	
-	public Controller(Player player, Activity activity, WorldContext worldContext) {
-		this.player = player;
+	public Controller(Activity activity, WorldContext worldContext) {
 		this.velocity = 1.5f;
 
 		//One ControllerText for each direction is created at the right positions and orientations.
@@ -36,19 +34,19 @@ public class Controller implements KeyListener {
 	}
 
 	private void completeUp() {
-		this.player.setVelocity(0, -this.velocity);
+		this.worldContext.getPlayer().setVelocity(0, -this.velocity);
 		this.resetControllers();
 	}
 	private void completeRight() {
-		this.player.setVelocity(this.velocity, 0);
+		this.worldContext.getPlayer().setVelocity(this.velocity, 0);
 		this.resetControllers();
 	}
 	private void completeDown() {
-		this.player.setVelocity(0, this.velocity);
+		this.worldContext.getPlayer().setVelocity(0, this.velocity);
 		this.resetControllers();
 	}
 	private void completeLeft() {
-		this.player.setVelocity(-this.velocity, 0);
+		this.worldContext.getPlayer().setVelocity(-this.velocity, 0);
 		this.resetControllers();
 	}
 

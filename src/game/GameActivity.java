@@ -20,7 +20,7 @@ public class GameActivity extends Activity {
 		WordSelector.getInstance().loadFile(WordSelector.class.getResource("/wordsNormal.txt"));
 		this.worldContext = new WorldContext(game);
 		this.levelHandler = new LevelHandler(this.worldContext);
-		this.controller = new Controller(this.worldContext.getPlayer(), this, this.worldContext);
+		this.controller = new Controller(this, this.worldContext);
 		this.addComponent(this.worldContext);
 		this.addComponent(this.levelHandler);
 		game.addKeyListener(this.controller);

@@ -7,11 +7,8 @@ import java.awt.*;
  */
 public class MenuText extends MenuItem {
 
-    private Font font;
-
     public MenuText(String text, int x, int y, int fontSize) {
         super(text, x, y, fontSize);
-        this.font = new Font("Monospaced", Font.PLAIN, fontSize);
     }
 
     /**

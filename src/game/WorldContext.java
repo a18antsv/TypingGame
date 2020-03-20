@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class WorldContext implements Paintable, Updateable {
 
     public static final int BORDER_THICKNESS = 40;
-    private Map<EntityCategory, Collection<Entity>> entities; //
+    private Map<EntityCategory, Collection<Entity>> entities;
     private Player player;
     private Level level;
     private int numberOfKilledEnemies;
